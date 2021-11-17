@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<GridPane fx:id="view" hgap="5.0" vgap="5.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints vgrow="NEVER" />
+      <RowConstraints />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints fillWidth="false" hgrow="NEVER" />
+      <ColumnConstraints hgrow="ALWAYS" />
+      <ColumnConstraints hgrow="NEVER" />
+   </columnConstraints>
+   <children>
+      <Button fx:id="enviarButton" defaultButton="true" mnemonicParsing="false" onAction="#OnEnviarAction" text="Enviar" GridPane.columnIndex="2" />
+      <Button fx:id="vaciarButton" mnemonicParsing="false" onAction="#OnVaciarButton" text="vaciar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Button fx:id="cerrarButton" mnemonicParsing="false" onAction="#OnCerrarAction" text="cerrar" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Label alignment="TOP_RIGHT" text="Servidor SMTP:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Label alignment="CENTER_RIGHT" text="Usar conexión SSL:" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER_RIGHT" text="Remitente(From):" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Label alignment="CENTER_RIGHT" text="Destinatario(To):" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Label alignment="CENTER_RIGHT" text="Asunto(Subject):" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <TextArea fx:id="mensajeText" promptText="Mensaje" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextArea>
+      <TextField fx:id="emailDestinatarioText" promptText="Email del destinatario" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="asuntoText" promptText="Asunto del mensaje" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </TextField>
+      <CheckBox fx:id="checkSSL" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </CheckBox>
+      <HBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+         <children>
+            <TextField fx:id="nombreText" promptText="Nombre o IP del servidor" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="puertoText" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="54.0" promptText="Puerto">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+         <children>
+            <TextField fx:id="emailRemitenteText" promptText="Email del remitente" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="contrasenaText" prefHeight="25.0" prefWidth="119.0" promptText="Contraseña" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>
