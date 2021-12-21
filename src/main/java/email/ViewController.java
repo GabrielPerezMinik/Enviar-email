@@ -2,6 +2,7 @@ package email;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.*;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
 
@@ -10,11 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 
@@ -80,6 +76,8 @@ public class ViewController implements Initializable{
 
 	    	
 			try {
+				email=new SimpleEmail();
+
 				email.setHostName(nombreText.getText());
 				email.setSmtpPort(Integer.parseInt(puertoText.getText()));
 				email.setAuthentication(emailRemitenteText.getText(), contrasenaText.getText());
@@ -88,10 +86,26 @@ public class ViewController implements Initializable{
 				email.setSubject(asuntoText.getText());
 				email.setMsg(mensajeText.getText());
 				email.addTo(emailDestinatarioText.getText());
-				email.send();
-			//	Alert exito = 
+
+				Hilotask hilo=new Hilotask(email);
+
+				hilo.setOnSucceeded(e->{
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Email enviado");
+					alert.setHeaderText("Email enviado");
+					alert.setContentText("Email enviado");
+					alert.showAndWait();});
+				hilo.setOnFailed(e->{Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("Error");
+					alert.setContentText("hubo un error");
+					alert.showAndWait();});
+
+				new Thread(hilo).start();
+
 			} catch (Exception e) {
-		//		alert.error();
+
+				e.printStackTrace();
 			}
 	    }
 
@@ -104,7 +118,14 @@ public class ViewController implements Initializable{
 	    }
 
 		public void initialize(URL location, ResourceBundle resources) {
-			// TODO Auto-generated method stub
+			nombreText.setText("smtp.gmail.com");
+			puertoText.setText("465");
+			emailRemitenteText.setText("dad.iesdpm@gmail.com");
+			contrasenaText.setText("chucknorri$21");
+			checkSSL.setSelected(true);
+			emailDestinatarioText.setText("grupoacompana007@gmail.com");
+			asuntoText.setText("Hola");
+			mensajeText.setText("Hola");
 			email= new SimpleEmail();
 
 			

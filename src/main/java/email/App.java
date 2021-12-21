@@ -19,7 +19,6 @@ public class App extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		ViewController control = new ViewController();
 		Scene scene=new Scene(control.getView());
 		primaryStage.setTitle("Enviar Email");
